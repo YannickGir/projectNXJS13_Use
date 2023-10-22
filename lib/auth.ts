@@ -1,8 +1,8 @@
-import { env } from "@/lib/env";
-import { AuthOptions } from "next-auth";
+import { env } from "./env";
+import { AuthOptions, getServerSession } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "./prisma";
 
 
 export const authOptions : AuthOptions = {
@@ -14,5 +14,17 @@ export const authOptions : AuthOptions = {
       }),
       
     ],
+    // callbacks:{
+    //     session({session, user}) {
+    //         if (!session?.user) return session;
+    //         session.user.id = user.id;
+    //         return session
+    //     }
+    // }
+  }
+
+  export const getAuthSession = async()=> {
+    const session = await getServerSession(authOptions)
+    return session
   }
  
