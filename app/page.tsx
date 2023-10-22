@@ -11,7 +11,7 @@ import { Form } from 'react-hook-form'
 
 export default function Home() {
   return (
-    <div className='m-4'>
+    <div className=''>
     <Button>click me !</Button>
     <Input/>
     </div>
