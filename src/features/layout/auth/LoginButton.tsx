@@ -6,7 +6,7 @@ import { Loader, LogIn } from 'lucide-react'
 import { useTransition } from 'react'
 import {signIn} from 'next-auth/react'
 
-export const LogginButton = () => {
+export const LoginButton = () => {
   const [isPending, startTransition] = useTransition();
   
   return (  
