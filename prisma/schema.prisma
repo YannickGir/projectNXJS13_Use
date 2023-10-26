@@ -56,4 +56,17 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  followers Follow[] @relation("follower)
+  followeds Follow[] @relation(followed)
+}
+
+model Follow {
+    id          String  @id @default(cuid())
+    followerId  String  
+    followingId String
+    createdAt   DateTime @default(now())
+
+    follower User @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+    followed User @relation("followed", fields: [followingId], references: [id], onDelete: Cascade)
 }
