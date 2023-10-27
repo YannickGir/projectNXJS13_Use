@@ -68,10 +68,21 @@ model Post {
     parentId    String?
     userId      String
     createdAt   DateTime @default(now())
-
+    
     user User @relation(fields: [userId], references: [id], onDelete:Cascade)
+    likes   Like[]
     replies Post[ @relation("comments")
-    parent Post? @relation("comments, fields: [parentId], references:[id], onDelete:Cascade)]
+    parent Post? @relation("comments", fields: [parentId], references:[id], onDelete:Cascade)]
+}
+
+model Like {
+    id          String  @id @default(cuid())
+    postId      String
+    userId      String
+    createdAt   DateTime @default(now())
+    likes       Like[]
+    user User @relation(fields: [userId], references: [id], onDelete:Cascade)
+    post Post @relation(fields: [postId], references:[id], onDelete:Cascade)]
 }
 
 model Follow {
