@@ -3,6 +3,7 @@ import { AuthOptions, getServerSession } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
 import { prisma } from "./prisma";
+import { any } from "zod";
 
 
 export const authOptions : AuthOptions = {
@@ -11,6 +12,16 @@ export const authOptions : AuthOptions = {
       GithubProvider({
         clientId: env.GITHUB_ID,
         clientSecret: env.GITHUB_SECRET,
+        profile (profile) {
+            console.log({profile})
+            return{
+                id: profile.id.toString(),
+                username: profile.login,
+                name: profile.name,
+                email: profile.email,
+                image: profile.avatar_url,
+            };
+        }
       }),
       
     ],
