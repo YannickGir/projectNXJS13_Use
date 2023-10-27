@@ -57,6 +57,11 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  username  String
+  bio       String?
+  link      String?
+  createdAt DateTime @default(now())
+
   followers Follow[] @relation("follower)
   followeds Follow[] @relation(followed)
   posts     Post[]
