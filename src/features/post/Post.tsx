@@ -1,5 +1,7 @@
 import { PostHome } from '@/src/query/post.query'
 import React from 'react'
+import {PostLayout} from './PostLayout';
+import Link from 'next/link';
 
 type PostProps = {
     post : PostHome,
@@ -9,6 +11,10 @@ type PostProps = {
 export const Post = ({post}:PostProps) => {
 
   return (
-    <div>post</div>
+    <PostLayout user={post.user} postId={post.id} createdAt={post.createdAt} >
+        <Link href={`/posts/${post.id}`} className='text-sm text-foreground'>
+            {post.content}
+        </Link>
+    </PostLayout>
   )
 }
