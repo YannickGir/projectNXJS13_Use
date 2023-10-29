@@ -10,13 +10,37 @@ import {
   FieldPath,
   FieldValues,
   FormProvider,
+  SubmitHandler,
+  UseFormProps,
+  UseFormReturn,
+  useForm,
   useFormContext,
 } from "react-hook-form"
 
+import {zodResolver} from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
+import { TypeOf, ZodSchema } from "zod"
 
-const Form = FormProvider
+type FormProps<T extends FieldValues> = Omit<React.ComponentProps<"form">, "onSubmit"> & {
+    form: UseFormReturn<T>,
+    onSubmit: SubmitHandler<T>
+}
+const Form = <T extends FieldValues>({
+form,
+onSubmit,
+children,
+className, 
+...props
+}: FormProps<T>) => {
+    <FormProvider {...form}> 
+        <form onSubmit={form.handleSubmit(onSubmit)} {...props}>
+            <fieldset disabled={form.formState.isSubmitting} className={className}>
+                {children}
+            </fieldset>
+        </form>
+    </FormProvider>
+}
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -165,7 +189,21 @@ const FormMessage = React.forwardRef<
     </p>
   )
 })
-FormMessage.displayName = "FormMessage"
+FormMessage.displayName = "FormMessage";
+
+//creation d'un custom hook :
+type UseZodFormProps<T extends ZodSchema> = Exclude<UseFormProps<TypeOf<T>>, "resolver"> & {
+schema: T;
+}
+
+const UseZodForm = <T extends ZodSchema>({
+    schema, ...formProps
+}: UseZodFormProps<T> ) => {
+    return useForm ({
+        ... formProps,
+        resolver: zodResolver(schema),
+    })
+}
 
 export {
   useFormField,
