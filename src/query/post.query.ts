@@ -1,13 +1,11 @@
 import { prisma } from "@/lib/prisma";
-import { getAuthSession } from '@/lib/auth';
 import { Prisma } from "@prisma/client";
 
-const session = await getAuthSession();
 export const getLatestPosts = (userId?: string) => prisma.post.findMany({
     where:{
         parentId: null
     },
-    take:20,
+    take:25,
     orderBy: {
         createdAt: 'desc'
     },
@@ -24,19 +22,19 @@ export const getLatestPosts = (userId?: string) => prisma.post.findMany({
         },
         likes: {
             select: {
-                userId: true
+                userId: true,
             },
             where: {
-                userId: session?.user.id ?? "error"
-            }
+                userId: userId ?? "error"
+            },
         },
         _count: {
             select: {
                 likes: true,
-                replies: true
-            }
-        }
-    }
+                replies: true,
+            },
+        },
+    },
 });
 
 export type PostHome = Prisma.PromiseReturnType<typeof getLatestPosts>[number]

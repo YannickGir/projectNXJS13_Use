@@ -8,7 +8,7 @@ import React from 'react'
 export const Header = async () => {
     const session = await getAuthSession();
   return (
-    <header className='border-b border-b-accent fixed top-0 bg-background w-full'>
+    <header className='border-b border-b-accent fixed z-20 top-0 bg-background w-full'>
         <div className='container flex items-center py-2 max-w-lg m-auto gap-1'> 
             <h2 className='text-2xl font-bold mr-auto'>TweetLike</h2>
             {session?.user ? (

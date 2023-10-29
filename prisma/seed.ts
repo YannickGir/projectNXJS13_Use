@@ -47,11 +47,11 @@ const main = async () => {
     })
         const randomPostIndex = faker.number.int({
         min: 0,
-        max: users.length -1,
+        max: posts.length -1,
     })
      const like = {
         postId: posts[randomPostIndex].id,
-        userId: users[randomPostIndex].id
+        userId: users[randomUserIndex].id
         } satisfies Prisma.LikeUncheckedCreateInput;
 
         await prisma.like.create({data:like});

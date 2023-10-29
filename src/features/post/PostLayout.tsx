@@ -5,7 +5,7 @@ import { PostHome } from '@/src/query/post.query';
 import clsx from 'clsx';
 import { MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
-import React, { Children, PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 
 type PostLayoutProps = PropsWithChildren <{
     user: PostHome['user'];
