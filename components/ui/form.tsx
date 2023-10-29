@@ -33,6 +33,7 @@ children,
 className, 
 ...props
 }: FormProps<T>) => {
+    return(
     <FormProvider {...form}> 
         <form onSubmit={form.handleSubmit(onSubmit)} {...props}>
             <fieldset disabled={form.formState.isSubmitting} className={className}>
@@ -40,6 +41,7 @@ className,
             </fieldset>
         </form>
     </FormProvider>
+    )
 }
 
 type FormFieldContextValue<
@@ -214,4 +216,5 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  UseZodForm,
 }
