@@ -19,11 +19,11 @@ console.log(post._count);
             {post.content}
         </Link>
         <div className='flex gap-2 items-center'>
-            <Button size="icon" variant="ghost">
-        <Heart/>
+        <Button size="icon" variant="ghost">
+            <Heart/>
         </Button>
         <Button size="icon" variant="ghost">
-        <MessageCircle/>
+            <MessageCircle/>
         </Button>
         </div>
         <div className='text-muted-foreground text-sm'>

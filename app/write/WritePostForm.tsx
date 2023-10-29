@@ -5,7 +5,8 @@ import { Form, FormField, FormItem, FormMessage, UseZodForm } from "@/components
 import { ContentTextArea } from "@/src/features/post/ContentTextArea";
 import { PostLayout } from "@/src/features/post/PostLayout";
 import {User} from "@prisma/client";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 import {z} from "zod";
 
 const Schema = z.object({
@@ -25,7 +26,7 @@ export const WritePostForm = ({user, onSubmit}:WritePostFormProps) => {
   })
   const router = useRouter();
 
-  return <PostLayout user={user} className="flex flex-col gap-2">
+  return <PostLayout user={user}>
     <Form form={form} onSubmit={async (values)=> {
         //gestion du onSubmit
     }}>

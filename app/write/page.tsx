@@ -1,7 +1,15 @@
-import React from 'react'
+import { WritePostForm } from '@/app/write/WritePostForm'
+import { getUser } from '@/src/query/user.query'
 
-export default function Write() {
+export default async function Write() {
+    const user = await getUser();
   return (
-    <div>write</div>
+    
+        <WritePostForm 
+        user={user} 
+        onSubmit={async ()=> {
+            'use server'  //utilisation d'une server action
+        }} />
+
   )
 }
