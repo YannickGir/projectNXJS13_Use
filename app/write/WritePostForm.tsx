@@ -1,5 +1,6 @@
 "use client"
 
+import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormMessage, UseZodForm } from "@/components/ui/form";
 import { ContentTextArea } from "@/src/features/post/ContentTextArea";
@@ -17,7 +18,7 @@ export type WritePostFormValues = z.infer<typeof Schema>;
 
 type WritePostFormProps = {
     user: User;
-    onSubmit: (values: WritePostFormValues) => void;
+    onSubmit: (values: WritePostFormValues) => Promise<string>;  // retourne l'id
 }
 
 export const WritePostForm = ({user, onSubmit}:WritePostFormProps) => {
@@ -27,8 +28,12 @@ export const WritePostForm = ({user, onSubmit}:WritePostFormProps) => {
   const router = useRouter();
 
   return <PostLayout user={user}>
-    <Form form={form} onSubmit={async (values)=> {
-        //gestion du onSubmit
+    <Form 
+        form={form} 
+        onSubmit={async (values)=> {
+        const postId = await onSubmit(values); // récupère la Promise<string>
+        alert("submited to client side ! " + postId)
+        router.push(`/posts/${postId}`)
     }}>
         <FormField 
         control={form.control} 
