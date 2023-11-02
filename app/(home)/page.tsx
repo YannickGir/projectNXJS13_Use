@@ -12,6 +12,7 @@ export default async function Home() {
     const posts = await getLatestPosts();
   return (
     <div className='divide-y divide-muted'>
+        <p>{JSON.stringify(session, null, 2)}</p>
             {posts.map((p)=> (
                 <Post post={p} key={p.id}/>
                 
