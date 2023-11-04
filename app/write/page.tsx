@@ -1,4 +1,4 @@
-import { createPost } from '@/app/write/WritePostAction';
+import { createPost } from '@/app/write/write-post.action';
 import { WritePostForm } from '@/app/write/WritePostForm'
 import { getUser } from '@/src/query/user.query'
 

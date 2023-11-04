@@ -1,6 +1,6 @@
 // "use client";
 
-import { createPost } from '@/app/write/WritePostAction';
+import { createPost } from '@/app/write/write-post.action';
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { getAuthSession } from '@/lib/auth';
