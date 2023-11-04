@@ -9,12 +9,13 @@ import { Post } from '@/src/features/post/Post';
 import { getLatestPosts } from '@/src/query/post.query';
 import { getUser } from '@/src/query/user.query';
 
-export default async function Posts() {
-    const user = await getUser();
+export default async function Posts({params} : {params:{postId:String}}) {
+
   return (
     <div className='divide-y divide-muted'>
         
-        test
+        {params.postId} <br/>
+        
             
     </div>
   )
