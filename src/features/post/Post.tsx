@@ -3,7 +3,7 @@ import React from 'react'
 import {PostLayout} from './PostLayout';
 import Link from 'next/link';
 import { Heart, MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 type PostProps = {
     post : PostHome,
@@ -20,11 +20,11 @@ console.log(post._count);
         </Link>
         <div className='flex gap-2 items-center'>
         <Button size="icon" variant="ghost">
-            <Heart/>
+            <Heart size={20}/>
         </Button>
-        <Button size="icon" variant="ghost">
-            <MessageCircle/>
-        </Button>
+        <Link href={`/posts/${post.id}/reply`} className={buttonVariants({size:"icon", variant:"ghost"})} >
+            <MessageCircle size={20}/>
+        </Link>
         </div>
         <div className='text-muted-foreground text-sm'>
             <Link href={`/posts/${post.id}`}> 

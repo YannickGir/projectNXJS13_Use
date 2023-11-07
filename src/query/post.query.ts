@@ -55,4 +55,16 @@ export const getPostView = (id: string, userId?: string) => prisma.post.findUniq
     
 } );
 
+export const getPost = (id: string, userId?: string) =>  {
+ return prisma.post.findUnique({
+    where: {
+        id
+    },
+    select:{
+        ... postSelectQuery(userId),
+    },
+    
+} );}
+
+
 export type PostHome = Prisma.PromiseReturnType<typeof getLatestPosts>[number]
