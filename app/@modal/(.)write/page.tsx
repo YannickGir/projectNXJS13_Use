@@ -6,6 +6,6 @@ import React from 'react'
 export default async function Page() {
     const user = await getUser();
   return (
-    <WriteModal user={user} createPost={createPost}/>
+    <WriteModal path="write" user={user} createPost={createPost}/>
   )
 }

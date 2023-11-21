@@ -18,7 +18,7 @@ export const createReply = async (postId:string, values: WritePostFormValues) =>
  })
 
 await new Promise((resolve) => setTimeout(resolve, 1000));
-revalidatePath(`posts/${postId}`)
+revalidatePath(`/posts/${postId}`)
 
  return postId;
 }

@@ -19,9 +19,9 @@ console.log(post._count);
             {post.content}
         </Link>
         <div className='flex gap-2 items-center'>
-        <Button size="icon" variant="ghost">
-            <Heart size={20}/>
-        </Button>
+            <Button size="icon" variant="ghost">
+                <Heart size={20}/>
+            </Button>
         <Link href={`/posts/${post.id}/reply`} className={buttonVariants({size:"icon", variant:"ghost"})} >
             <MessageCircle size={20}/>
         </Link>

@@ -5,19 +5,20 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { User } from "@prisma/client";
 import { useRouter, usePathname } from "next/navigation";
 
-export const WriteModal = ({
+export const ReplyModal = ({
     user, 
-    createPost
+    createReply
     }:{
         user: User; 
-        createPost:(values:WritePostFormValues) => Promise<string>;
+        createReply:(values:WritePostFormValues) => Promise<string>;
     }) => {
     const router = useRouter();
     const pathname = usePathname();
   return (
-    <Dialog open={pathname === '/write'} onOpenChange={()=>{router.back()}}> 
+    <Dialog open={pathname?.includes("reply")} 
+    onOpenChange={()=>{router.back()}}> 
         <DialogContent>
-            <WritePostForm user={user} onSubmit={createPost}/>
+            <WritePostForm user={user} onSubmit={createReply}/>
         </DialogContent>
     </Dialog>
   )
