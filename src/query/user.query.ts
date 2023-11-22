@@ -59,7 +59,7 @@ export const getUserProfile = async (userId:string) => {
                     }
                 }
             },
-            take: 3,
+            take: 4,
             orderBy: {
                 createdAt: "desc",
             } 
@@ -68,3 +68,5 @@ export const getUserProfile = async (userId:string) => {
  } 
  )
 }
+
+export type UserProfile = NonNullable< Prisma.PromiseReturnType<typeof getUserProfile>>
