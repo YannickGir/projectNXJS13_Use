@@ -2,6 +2,7 @@ import { UserProfile } from '@/src/query/user.query';
 import React, { PropsWithChildren } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Key } from 'lucide-react';
+import Link from 'next/link';
 
 const removeHttp = (url:string) => {
     return url.replace(/(^\w+:|^)\/\//, '');
@@ -39,7 +40,7 @@ export const Profile = ({user, children}:PropsWithChildren<{user:UserProfile}>) 
                 (
                 <>
                 <p className='text-muted-foreground'>{' . '}</p>
-                <link className='text-muted-foreground hover:underline' href={user.link}>{removeHttp(user.link)}</link>
+                <Link className='text-muted-foreground hover:underline' href={user.link}>{removeHttp(user.link)}</Link>
                 </>
 
                 ):null
