@@ -34,7 +34,7 @@ if (!isCurrentUser) {
 </form>)}
     return (
          
-    <div>
+    <div className='divide-y divide-accent border-t border-accent'>
         <Profile user={user}/>
       
             <form className='mt-4'>
