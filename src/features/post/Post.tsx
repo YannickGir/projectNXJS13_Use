@@ -11,7 +11,7 @@ type PostProps = {
 }
 
 export const Post = ({post}:PostProps) => {
-console.log(post._count);
+// console.log(post._count);
 
   return (
     <PostLayout user={post.user} postId={post.id} createdAt={post.createdAt} >

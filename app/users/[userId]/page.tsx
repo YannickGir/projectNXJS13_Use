@@ -19,19 +19,26 @@ export default async function UserPage({params}:{params:{userId:string}}) {
         followingId: user.id
     },
 }) : null
-
+const isCurrentUser = params.userId === session?.user.id;
+    let FollowButton
+if (!isCurrentUser) {
+    FollowButton = (<form className='mt-4'>
+    <Button variant={'outline'} formAction={async () => {
+        'use server';
+        if(!session?.user.id ) {
+            return;
+        }
+        await followUser(params.userId)}}>
+        {isFollowing ? "Unfollow" : "Follow"}
+    </Button>
+</form>)}
     return (
+         
     <div>
         <Profile user={user}/>
-            <form>
-                <Button formAction={async () => {
-                    'use server'
-                    if(!session?.user.id) {
-                        return 
-                    }
-                    followUser(params.userId)}}>
-                    {isFollowing ? "Unfollow" : "Follow"}
-                </Button>
+      
+            <form className='mt-4'>
+                {FollowButton}
             </form>
     </div>
   )
