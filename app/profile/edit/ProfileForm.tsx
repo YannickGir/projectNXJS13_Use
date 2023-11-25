@@ -99,7 +99,7 @@ return (
 
         <div className="flex w-full justify-end">
             <Button>
-                Post
+                Edit
             </Button>
         </div>
     </Form>

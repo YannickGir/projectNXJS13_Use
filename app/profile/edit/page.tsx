@@ -1,4 +1,5 @@
 import { ProfileForm } from '@/app/profile/edit/ProfileForm';
+import { editProfile } from '@/app/profile/edit/edit-profile.action';
 import { getUserEdit } from '@/src/query/user.query'
 import { notFound } from 'next/navigation';
 import React from 'react'
