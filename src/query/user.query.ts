@@ -35,7 +35,17 @@ export const getUser = async () => {
 };
 
 export const getUserProfile = async (userId:string) => {
-    return prisma.user.findUnique({where:{id:userId},
+    return prisma.user.findFirst({
+    where:{
+        OR: [
+            {
+                username: userId,
+            },
+            {
+                id:userId,
+            }
+        ]
+    },
     select:{
         ...userQuery,
         _count: {

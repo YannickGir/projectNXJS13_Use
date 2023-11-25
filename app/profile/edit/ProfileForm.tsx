@@ -38,6 +38,9 @@ const router = useRouter();
 
 return (
     <Form className="space-y-4" form={form} onSubmit={async (values) => {
+        if (event) {
+            event.preventDefault(); // Empêche le comportement par défaut du formulaire
+          }
         const url = await onSubmit(values);
         if(url) {
             router.push(url);

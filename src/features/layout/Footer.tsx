@@ -15,7 +15,7 @@ export const Footer = () => {
                 <PenSquare size={16}/>
             </Link>
 
-            <Link href={"/"} className={clsx(buttonVariants({variant:'ghost' }), 'flex-1')}> 
+            <Link href={"/profile"} className={clsx(buttonVariants({variant:'ghost' }), 'flex-1')}> 
                 <User size={16}/>
             </Link>
        
