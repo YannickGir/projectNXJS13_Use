@@ -1,6 +1,7 @@
 'use client'
 
-import { WritePostForm, WritePostFormValues } from "@/app/write/WritePostForm";
+import { ReplyPostForm } from "@/app/reply/ReplyPostForm";
+import {WritePostFormValues } from "@/app/write/WritePostForm";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { User } from "@prisma/client";
 import { useRouter, usePathname } from "next/navigation";
@@ -18,7 +19,7 @@ export const ReplyModal = ({
     <Dialog open={pathname?.includes("reply")} 
     onOpenChange={()=>{router.back()}}> 
         <DialogContent>
-            <WritePostForm user={user} onSubmit={createReply}/>
+            <ReplyPostForm user={user} onSubmit={createReply}/>
         </DialogContent>
     </Dialog>
   )

@@ -21,7 +21,7 @@ type WritePostFormProps = {
     onSubmit: (values: WritePostFormValues) => Promise<string>;  // retourne l'id
 }
 
-export const WritePostForm = ({user, onSubmit}:WritePostFormProps) => {
+export const ReplyPostForm = ({user, onSubmit}:WritePostFormProps) => {
   const form = UseZodForm({
     schema: Schema,
   })
@@ -34,7 +34,7 @@ export const WritePostForm = ({user, onSubmit}:WritePostFormProps) => {
         const postId = await onSubmit(values); // récupère la Promise<string>
         // alert("submited to client side ! " + postId)
         router.push(`/posts/${postId}`)
-        window.location.href = '/';
+        window.location.href = `/posts/${postId}`;
         router.refresh();  // afin de rafraichir tout de suite la page dès qu'il y a un post d'envoyé
     }}>
         <FormField 
