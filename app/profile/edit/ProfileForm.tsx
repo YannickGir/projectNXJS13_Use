@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, UseZodForm } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { UserEdit } from "@/src/query/user.query";
 import { useRouter } from "next/navigation";
 import { z } from "zod"
 

@@ -69,4 +69,19 @@ export const getUserProfile = async (userId:string) => {
  )
 }
 
+export const getUserEdit = async () => {
+    const session = await getAuthSession();
+
+    if (!session) {
+        throw new Error ('no session')
+    }
+    return prisma.user.findUnique(
+        {where: {
+            id: session.user.id,
+        },
+        select: userQuery,
+    }
+    ) 
+}
+export type UserEdit = NonNullable< Prisma.PromiseReturnType<typeof getUserEdit>>
 export type UserProfile = NonNullable< Prisma.PromiseReturnType<typeof getUserProfile>>
