@@ -75,7 +75,7 @@ export const getUserEdit = async () => {
     if (!session) {
         throw new Error ('no session')
     }
-    return prisma.user.findUnique(
+    return prisma.user.findUniqueOrThrow(
         {where: {
             id: session.user.id,
         },
