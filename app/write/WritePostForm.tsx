@@ -34,6 +34,7 @@ export const WritePostForm = ({user, onSubmit}:WritePostFormProps) => {
         const postId = await onSubmit(values); // récupère la Promise<string>
         // alert("submited to client side ! " + postId)
         router.push(`/posts/${postId}`)
+        window.location.href = `/posts/${postId}`;
         router.refresh();  // afin de rafraichir tout de suite la page dès qu'il y a un post d'envoyé
     }}>
         <FormField 

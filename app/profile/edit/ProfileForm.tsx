@@ -44,6 +44,7 @@ return (
         const url = await onSubmit(values);
         if(url) {
             router.push(url);
+            window.location.href = url;
             router.refresh();
         }
     }}>
