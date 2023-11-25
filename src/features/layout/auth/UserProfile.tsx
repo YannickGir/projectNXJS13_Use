@@ -19,7 +19,7 @@ export const UserProfile = async() => {
 
 <DropdownMenuContent>
     <DropdownMenuItem asChild>
-        <Link href="/Profile">
+        <Link href="/profile">
             <User2 className='mr-2 h-4 w-4'/> 
         Profile 
         </Link>

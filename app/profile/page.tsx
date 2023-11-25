@@ -1,45 +1,33 @@
 import { Profile } from '@/app/users/[userId]/Profile';
 import { followUser } from '@/app/users/[userId]/follow.action';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { getAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { getUserProfile } from '@/src/query/user.query';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
-export default async function ProfilePage({params}:{params:{userId:string}}) {
+export default async function ProfilePage({}) {
     const session = await getAuthSession();
-    const user = await getUserProfile(params.userId )
+    if (!session?.user.id) {
+        notFound()
+      }
+    const user = await getUserProfile(session?.user.id )
     if (!user) {
         notFound()
       }
-      const isFollowing = session?.user.id ? await prisma.follow.findFirst({
-        where: {
-            followerId: user.id,
-            followingId: user.id
-        },
-    }) : null
-    const isCurrentUser = params.userId === session?.user.id;
-        let FollowButton
-    if (!isCurrentUser) {
-        FollowButton = (<form className='mt-4'>
-        <Button variant={'outline'} formAction={async () => {
-            'use server';
-            if(!session?.user.id ) {
-                return;
-            }
-            await followUser(params.userId)}}>
-            {isFollowing ? "Unfollow" : "Follow"}
-        </Button>
-    </form>)}
         return (
              
-        <div className='divide-y divide-accent border-t border-accent'>
+        <div>
             <Profile user={user}/>
-          
-                <form className='mt-4'>
-                    {FollowButton}
-                </form>
+            <form className='mt-4'>
+                <Link className={buttonVariants({
+                    variant:'outline'
+                })} href={"/profile/edit"}>
+                    Edit Profile
+                </Link>
+            </form> 
         </div>
       )
 }
