@@ -41,10 +41,11 @@ if (!isCurrentUser) {
       
             <form className='mt-4'>
                 {FollowButton}
+
             </form>
             </Profile>
 
-            <div className='divide-y divide-accent'>
+            <div className='divide-y divide-accent border-t border-accent mt-4'>
                 {user.posts.map((post)=> (
                     <Post key={post.id} post={post}/>
                 ))}
