@@ -3,6 +3,7 @@ import { followUser } from '@/app/users/[userId]/follow.action';
 import { buttonVariants } from '@/components/ui/button';
 import { getAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { Post } from '@/src/features/post/Post';
 import { getUserProfile } from '@/src/query/user.query';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -28,6 +29,11 @@ export default async function ProfilePage({}) {
                     Edit Profile
                 </Link>
             </form> 
+            <div className='divide-y divide-accent border-t border-accent mt-4'>
+                {user.posts.map((post)=> (
+                    <Post key={post.id} post={post}/>
+                ))}
+            </div>
         </div>
       )
 }

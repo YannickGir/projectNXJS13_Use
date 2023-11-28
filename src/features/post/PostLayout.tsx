@@ -1,9 +1,13 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { formatDate } from '@/lib/date';
+import { DropDownMenuLogout } from '@/src/features/layout/auth/DropDownMenuLogout';
+import { DropDownMenuDelete } from '@/src/features/layout/post/DropDownMenuDelete';
 import { PostHome } from '@/src/query/post.query';
 import clsx from 'clsx';
-import { MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal, PenSquare, User2 } from 'lucide-react';
 import Link from 'next/link';
 import React, { PropsWithChildren } from 'react'
 
@@ -34,9 +38,27 @@ export const PostLayout = ({children, className, user, createdAt, postId}:PostLa
                 {formatDate(createdAt)}
             </p>
         ) : null}
-        <button>
-            <MoreHorizontal size={20}/>
-        </button>
+       
+            
+            <DropdownMenu>
+        <DropdownMenuTrigger asChild> 
+        <Button size="sm" variant="outline">
+           <MoreHorizontal size={20}/> 
+        </Button>
+</DropdownMenuTrigger>
+
+<DropdownMenuContent>
+    <DropdownMenuItem asChild>
+        <Link href="/profile">
+            <PenSquare className='mr-2 h-4 w-4' size={16}/>
+        Edit
+        </Link>
+    </DropdownMenuItem>
+       <DropDownMenuDelete/> 
+</DropdownMenuContent>
+    </DropdownMenu>
+ 
+        
         </div> 
         </Link>
         {children}
