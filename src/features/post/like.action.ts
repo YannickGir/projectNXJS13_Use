@@ -17,7 +17,7 @@ export const likeAction = async (postId: string) => {
         }
     })
 
-    if (isLiked) {
+    if (isLiked ) {
         await prisma.like.delete({
             where: {
                 id: isLiked.id
