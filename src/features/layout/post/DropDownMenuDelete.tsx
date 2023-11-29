@@ -13,10 +13,7 @@ export const DropDownMenuDelete = () => {
 // ---------------------A MODIFIER POUR AJOUTER LA FONCTION DELETE D'UN POST------ ENSUITE FAIRE PAREIL POUR FONCTION MODIFIER POST 
 
   return (  
-    <DropdownMenuItem 
-        onClick={()=>{
-        startTransition(() => signOut());
-    }}>
+    <DropdownMenuItem>
         {isPending ? (
             <Loader className = "mr-2 h-4 w-4"/>
             ):(

@@ -1,8 +1,6 @@
 'use server'
 
-import { ProfileFormType } from "@/app/profile/edit/ProfileForm";
 import { WritePostFormValues } from "@/app/reply/ReplyPostForm";
-import { getAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getUser } from "@/src/query/user.query";
 import { revalidatePath } from "next/cache";
@@ -23,6 +21,7 @@ export const editPost = async (postId:string, values: WritePostFormValues) => {
     })
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    revalidatePath(`/posts/${postId}`)
+    revalidatePath(`/modify/${user.id}`)
+    // revalidatePath(`/posts/${postId}`)
     return postId;
 }

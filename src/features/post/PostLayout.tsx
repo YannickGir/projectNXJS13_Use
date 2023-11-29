@@ -49,7 +49,7 @@ export const PostLayout = ({children, className, user, createdAt, postId}:PostLa
 
 <DropdownMenuContent>
     <DropdownMenuItem asChild>
-        <Link href="/profile">
+        <Link href="/modify">
             <PenSquare className='mr-2 h-4 w-4' size={16}/>
         Edit
         </Link>
