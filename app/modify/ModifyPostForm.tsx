@@ -19,7 +19,7 @@ export type WritePostFormValues = z.infer<typeof Schema>;
 
 type WritePostFormProps = {
     user: User;
-    onSubmit: (values: WritePostFormValues) => Promise<string>;  // retourne l'id
+    onSubmit: (postId:string, values: WritePostFormValues) => Promise<string>;  // retourne l'id
 }
 
 export const ModifyPostForm = ({ user, onSubmit }: WritePostFormProps) => {
@@ -31,7 +31,7 @@ export const ModifyPostForm = ({ user, onSubmit }: WritePostFormProps) => {
   
     const handleSubmit = async (values: WritePostFormValues) => {
       try {
-        const postId = await onSubmit(values);
+        const postId = await onSubmit(user.id, values);
         setMessage(`Post ${postId} submitted successfully!`);
         // Réinitialiser le formulaire si nécessaire
         form.reset();
@@ -45,7 +45,7 @@ export const ModifyPostForm = ({ user, onSubmit }: WritePostFormProps) => {
     <Form 
         form={form} 
         onSubmit={async (values)=> {
-        const postId = await onSubmit(values); // récupère la Promise<string>
+        const postId = await onSubmit(user.id, values); // récupère la Promise<string>
         // alert("submited to client side ! " + postId)
         router.push(`/posts/${postId}`)
         window.location.href = '/';
