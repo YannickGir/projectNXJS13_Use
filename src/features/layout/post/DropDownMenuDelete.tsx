@@ -10,6 +10,8 @@ import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 export const DropDownMenuDelete = () => {
   const [isPending, startTransition] = useTransition();
   
+// ---------------------A MODIFIER POUR AJOUTER LA FONCTION DELETE D'UN POST------ ENSUITE FAIRE PAREIL POUR FONCTION MODIFIER POST 
+
   return (  
     <DropdownMenuItem 
         onClick={()=>{

@@ -1,6 +1,24 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
+export const updatePost = async (postId: string, newContent: string) => {
+    try {
+      const updatedPost = await prisma.post.update({
+        where: {
+          id: postId,
+        },
+        data: {
+          content: newContent,
+        },
+      });
+      return updatedPost;
+    } catch (error) {
+      // Gérer les erreurs, par exemple, journaliser l'erreur ou la renvoyer
+      console.error("Erreur lors de la mise à jour du post :", error);
+      throw error;
+    }
+  };
+
 export const postSelectQuery = (userId?: string) => ({
     id: true,
     content: true,
